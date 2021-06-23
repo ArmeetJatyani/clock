@@ -1,6 +1,17 @@
 <head>
-	<title class="Clock. "></title>
-	<link rel="icon" href="favicon.ico">
+	<title class="Clock."></title>
+	<link rel="icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="robots" content="noindex"/>
+	<meta name="description" content="As simple as can be.">
+	<meta name="url" content="https://armeetjatyani.github.io/clock">
+	<meta property="og:title" content="Clock." />
+	<meta property="og:type" content="As simple as can be." />
+	<meta property="og:url" content="https://armeetjatyani.github.io/clock" />
+	<meta property="og:image" content="favicon.ico" />
+	<meta property="og:description" content="Site description" />
+	<meta name="theme-color" content="#a759ff">
+	
 </head>
 <body>
 	<div class="title">
@@ -16,18 +27,11 @@
 			<span class="dot"></span>
 		</div>
 	</div>
+
 	<script src="https://unpkg.com/@popperjs/core@2"></script>
 	<script src="https://unpkg.com/tippy.js@6"></script>
 	<style>
 		@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
-
-		.title {
-			font-family: monospace;
-			margin-right: 10%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
 
 		a {
 			text-align: center;
@@ -63,7 +67,16 @@
 			height: 100vh;
 			width: 100%;
 			display: flex;
+			flex-direction: row;
 			justify-content: center;
+			align-items: center;
+		}
+
+		.title {
+			font-family: monospace;
+			margin-right: 10%;
+			display: flex;
+			flex-direction: column;
 			align-items: center;
 		}
 
@@ -146,16 +159,25 @@
 			right: 0;
 			z-index: 99;
 		}
+
+		@media only screen and (max-width: 850px) {
+			body {
+				flex-direction: column;
+			}
+
+			.title {
+				margin-right: 0px;
+			}
+		}
 	</style>
 
 	<script>
-		var timeString = ""
+		var timeString = "";
 
 		tippy("#button", {
-			content: "🔗 Click me!"
+			content: "🔗 Click me!",
 		});
 
-		
 		var i = 1000;
 
 		clock();
@@ -177,15 +199,15 @@
 			document.querySelector(".minute").style.transform = `rotate(${mm}deg)`;
 			document.querySelector(".second").style.transform = `rotate(${ss}deg)`;
 
-			timeString = `${String(hh/30).padStart(2, '0')}:${String(mm/6).padStart(2, '0')}:${String(ss/6).padStart(2, '0')}`
-			document.title = `Clock. ${timeString}`
+			timeString = `${String(hh / 30).padStart(2, "0")}:${String(mm / 6).padStart(2, "0")}:${String(ss / 6).padStart(2, "0")}`;
+			document.title = `Clock. ${timeString}`;
 			tippy("#title", {
-				content: timeString
-			})
+				content: timeString,
+			});
 
 			tippy(".clock", {
 				content: timeString,
-			})
+			});
 		}
 
 		setInterval(clock, 1000);
