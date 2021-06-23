@@ -1,9 +1,10 @@
 <head>
-	<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+	<title class="Clock. "></title>
+	<link rel="icon" href="clock.png">
 </head>
 <body>
 	<div class="title">
-		<h1>Clock.</h1>
+		<h1 id="title">Clock.</h1>
 		<a id="button" href="https://twitter.com/ArmeetJatyani" target="blank">@ArmeetJatyani</a>
 	</div>
 
@@ -148,12 +149,13 @@
 	</style>
 
 	<script>
+		var timeString = ""
+
 		tippy("#button", {
 			content: "🔗 Click me!"
 		});
-	</script>
 
-	<script>
+		
 		var i = 1000;
 
 		clock();
@@ -174,6 +176,16 @@
 			document.querySelector(".hour").style.transform = `rotate(${hh}deg)`;
 			document.querySelector(".minute").style.transform = `rotate(${mm}deg)`;
 			document.querySelector(".second").style.transform = `rotate(${ss}deg)`;
+
+			timeString = `${String(hh/30).padStart(2, '0')}:${String(mm/6).padStart(2, '0')}:${String(ss/6).padStart(2, '0')}`
+			document.title = `Clock. ${timeString}`
+			tippy("#title", {
+				content: timeString
+			})
+
+			tippy(".clock", {
+				content: timeString,
+			})
 		}
 
 		setInterval(clock, 1000);
