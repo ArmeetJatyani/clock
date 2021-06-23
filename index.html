@@ -1,0 +1,181 @@
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+</head>
+<body>
+	<div class="title">
+		<h1>Clock.</h1>
+		<a id="button" href="https://twitter.com/ArmeetJatyani" target="blank">@ArmeetJatyani</a>
+	</div>
+
+	<div class="clock">
+		<div class="wrap">
+			<span class="hour"></span>
+			<span class="minute"></span>
+			<span class="second"></span>
+			<span class="dot"></span>
+		</div>
+	</div>
+	<script src="https://unpkg.com/@popperjs/core@2"></script>
+	<script src="https://unpkg.com/tippy.js@6"></script>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+
+		.title {
+			font-family: monospace;
+			margin-right: 10%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		a {
+			text-align: center;
+			width: 200px;
+			font-weight: bold;
+			background-color: rgba(167, 89, 255, 1);
+			color: #121921;
+			font-size: 20px;
+			position: relative;
+			top: -40px;
+			padding: 10px 15px;
+			border-radius: 6px;
+			text-decoration: none;
+			box-shadow: 6px 6px 35px #0d1218, -6px -6px 35px #17202a;
+			transition: all 0.2s ease-in-out;
+		}
+
+		a:hover {
+			background-color: rgba(167, 89, 255, 0.8);
+			top: -45px;
+		}
+
+		h1 {
+			font-family: "Krona One", sans-serif;
+			font-size: 100px;
+			color: rgba(167, 89, 255, 1);
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #121921;
+			height: 100vh;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.clock {
+			background-color: #121921;
+			border-radius: 100%;
+			background: linear-gradient(145deg, #10171e, #131b23);
+			box-shadow: 6px 6px 35px #0d1218, -6px -6px 35px #17202a;
+		}
+
+		.clock .wrap {
+			width: 320px;
+			height: 320px;
+			overflow: hidden;
+			position: relative;
+			border-radius: 100%;
+		}
+
+		.hour {
+			background-color: rgba(167, 89, 255, 1);
+			transition: all 5s ease-in-out;
+		}
+
+		.minute {
+			background-color: rgba(90, 255, 160, 1);
+		}
+
+		.minute,
+		.hour,
+		.second {
+			border-radius: 2px 2px 0px 0px;
+			position: absolute;
+			height: 100px;
+			width: 6px;
+			margin: auto;
+			top: -27%;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			transform: rotate(0deg);
+			transform-origin: bottom center;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+			z-index: 1;
+		}
+
+		.minute {
+			transition: all 3s ease-in-out;
+			position: absolute;
+			height: 130px;
+			width: 4px;
+			top: -38%;
+			left: 0;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+			transform: rotate(90deg);
+		}
+
+		.second {
+			transition: all 0.2s ease-in-out;
+			background-color: rgba(255, 160, 60, 1);
+			position: absolute;
+			height: 120px;
+			width: 2px;
+			top: -38%;
+			left: 0;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+			transform: rotate(180deg);
+		}
+
+		.dot {
+			background-color: rgba(255, 255, 255, 1);
+			position: absolute;
+			height: 10px;
+			width: 10px;
+			border-radius: 100%;
+			border: 2px solid #fff;
+			margin: auto;
+			top: 0;
+			left: 0;
+			bottom: -10px;
+			right: 0;
+			z-index: 99;
+		}
+	</style>
+
+	<script>
+		tippy("#button", {
+			content: "🔗 Click me!"
+		});
+	</script>
+
+	<script>
+		var i = 1000;
+
+		clock();
+
+		function clock() {
+			var date = new Date();
+
+			var hh = ((date.getHours() + 11) % 12) + 1;
+			var mm = date.getMinutes();
+			var ss = date.getSeconds();
+			var ms = date.getMilliseconds();
+			console.log("hh:", hh, "mm:", mm, "ss:", ss, "ms:", ms);
+
+			hh *= 30;
+			mm *= 6;
+			ss *= 6;
+
+			document.querySelector(".hour").style.transform = `rotate(${hh}deg)`;
+			document.querySelector(".minute").style.transform = `rotate(${mm}deg)`;
+			document.querySelector(".second").style.transform = `rotate(${ss}deg)`;
+		}
+
+		setInterval(clock, 1000);
+	</script>
+</body>
