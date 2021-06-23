@@ -1,2 +1,2 @@
-# simple-clock
-Just a simple clock!
+# Clock.
+https://armeetjatyani.github.io/simple-clock/
